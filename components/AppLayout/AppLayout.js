@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Logo } from '../Logo';
 import { useContext, useEffect } from 'react';
 import PostsContext from '../../context/postsContext';
+import { Button } from '@material-tailwind/react';
 
 export const AppLayout = ({
   children,
@@ -29,12 +30,12 @@ export const AppLayout = ({
   }, [postsFromSSR, setPostsFromSSR, postId, postCreated, getPosts]);
 
   return (
-    <div className="grid grid-cols-[300px_1fr] h-screen max-h-screen">
+    <div className="grid grid-cols-[300px_1fr] h-screen max-h-screen bg-slate-300">
       <div className="flex flex-col text-white overflow-hidden">
         <div className="bg-slate-800 px-2">
           <Logo />
-          <Link className="btn" href="/post/new">
-            New Post
+          <Link className='hover:no-underline' href="/post/new">
+            <Button className='btn'>New Post</Button>
           </Link>
           <Link className="block mt-2 text-center" href="/token-topup">
             <FontAwesomeIcon icon={faCoins} className="text-yellow-500" />
@@ -52,18 +53,17 @@ export const AppLayout = ({
             >
               {post.topic}
             </Link>
-          ) ) }
-                  { !noMorePosts && (
-                      <div
-            onClick={() => {
-              getPosts({ lastPostDate: posts[posts.length - 1] });
-            }}
-            className="hover:underline text-sm text-slate-400 text-center cursor-pointer mt-4"
-          >
-            Load more posts
-          </div>
-                  )}
-          
+          ))}
+          {!noMorePosts && (
+            <div
+              onClick={() => {
+                getPosts({ lastPostDate: posts[posts.length - 1] });
+              }}
+              className="hover:underline text-sm text-slate-400 text-center cursor-pointer mt-4"
+            >
+              Load more posts
+            </div>
+          )}
         </div>
         <div className="bg-cyan-800 flex items-center gap-2 border-t-2 border-t-black/20 h-20 px-2">
           {!!user ? (

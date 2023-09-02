@@ -1,5 +1,4 @@
 import { getSession } from '@auth0/nextjs-auth0';
-import clientPromise from '../../lib/mongodb';
 import stripeInit from 'stripe';
 
 const stripe = stripeInit(process.env.STRIPE_SECRET_KEY);

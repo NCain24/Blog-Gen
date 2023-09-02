@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { getAppProps } from '../../utils/getAppProps';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBrain } from '@fortawesome/free-solid-svg-icons';
+import { faUserClock } from '@fortawesome/free-solid-svg-icons';
 
 export default function NewPost(props) {
   const router = useRouter();
@@ -38,7 +38,7 @@ export default function NewPost(props) {
     <div className="h-full overflow-hidden">
       {!!generating && (
         <div className="text-green-500 flex h-full animate-pulse w-full flex-col justify-center items-center">
-          <FontAwesomeIcon icon={faBrain} className="text-8xl" />
+          <FontAwesomeIcon icon={faUserClock} className="text-8xl" />
           <h6>Generating...</h6>
         </div>
       )}
@@ -55,7 +55,7 @@ export default function NewPost(props) {
               <textarea
                 className="resize-none border border-slate-500 w-full block my-2 px-4 py-2 rounded-sm"
                 value={topic}
-                onChange={ ( e ) => setTopic( e.target.value ) }
+                onChange={(e) => setTopic(e.target.value)}
                 maxLength={80}
               />
             </div>
@@ -66,14 +66,18 @@ export default function NewPost(props) {
               <textarea
                 className="resize-none border border-slate-500 w-full block my-2 px-4 py-2 rounded-sm"
                 value={keywords}
-                onChange={ ( e ) => setKeywords( e.target.value ) }
+                onChange={(e) => setKeywords(e.target.value)}
                 maxLength={80}
               />
               <small className="block mb-2">
                 Separate keywords with a comma
               </small>
             </div>
-            <button type="submit" className="btn" disabled={ !topic.trim() || !keywords.trim()}>
+            <button
+              type="submit"
+              className="btn"
+              disabled={!topic.trim() || !keywords.trim()}
+            >
               Generate
             </button>
           </form>
@@ -89,15 +93,15 @@ NewPost.getLayout = function getLayout(page, pageProps) {
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
-    const props = await getAppProps( ctx );
-    
-    if ( !props.availableTokens ) {
+    const props = await getAppProps(ctx);
+
+    if (!props.availableTokens) {
       return {
         redirect: {
           destination: '/token-topup',
-          permanent: false
-        }
-      }
+          permanent: false,
+        },
+      };
     }
     return { props };
   },
