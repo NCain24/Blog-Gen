@@ -1,2 +1,9 @@
-# Next JS & Open AI / GPT: Next-generation Next JS & AI apps
-This is the starter repo for the [Next JS & Open AI / GPT: Next-generation Next JS & AI apps course](https://www.udemy.com/course/next-js-ai/?referralCode=CF9492ACD4991930F84E).
+# Blog Gen
+### A generative blog creation application created using:
+* Next.js
+* React.js
+* Tailwind CSS
+* Stripe
+* Auth0
+
+![BG_Begin](https://github.com/NCain24/Blog-Gen/assets/88724898/87ca26c6-6da5-48e8-af10-c8dc2561e59c)
